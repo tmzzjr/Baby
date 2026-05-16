@@ -187,7 +187,8 @@ function formatPrice(usd) {
   if (usd >= 1) return '$' + usd.toFixed(4);
   if (usd >= 0.01) return '$' + usd.toFixed(5);
   if (usd >= 0.0001) return '$' + usd.toFixed(7);
-  return '$' + usd.toExponential(2);
+  // Very small (sub-1e-4) — show decimals to ~14 digits, strip trailing zeros
+  return '$' + usd.toFixed(14).replace(/0+$/, '').replace(/\.$/, '');
 }
 
 async function refreshBabysheepPrice() {

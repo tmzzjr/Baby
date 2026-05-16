@@ -1,0 +1,13 @@
+{
+  "name": "baby-sheep-site",
+  "version": "1.0.0",
+  "description": "Baby Sheep ($BABYSHEEP) - To the moon.",
+  "private": true,
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

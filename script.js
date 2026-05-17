@@ -34,17 +34,11 @@ const heroContent = document.querySelector('.hero-content');
 const heroVignette = document.querySelector('.hero-vignette');
 
 function revealHero() {
+  // Only the contract card waits for the video — everything else is visible from page render
   heroContent?.classList.add('is-revealed');
-  heroVignette?.classList.add('is-revealed');
-  document.querySelector('.nav')?.classList.add('is-revealed');
-  document.querySelector('.hero-socials')?.classList.add('is-revealed');
-  document.querySelector('.hero-price')?.classList.add('is-revealed');
-  document.querySelector('.tg-fab')?.classList.add('is-revealed');
-  document.body.classList.remove('video-locked');
 }
 
 if (heroVideo) {
-  document.body.classList.add('video-locked');
   // Required for mobile autoplay (iOS Safari, Android) — must be set BEFORE play()
   heroVideo.muted = true;
   heroVideo.defaultMuted = true;

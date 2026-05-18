@@ -127,6 +127,59 @@ if (nav) {
   }, { passive: true });
 }
 
+// PRESALE SWAP — 1 USDT = 1,000,000,000 $BABYSHEEP (two-way sync)
+const SWAP_RATE = 1_000_000_000;
+const payAmount = document.getElementById('payAmount');
+const receiveAmount = document.getElementById('receiveAmount');
+const swapBuyBtn = document.getElementById('swapBuyBtn');
+
+function parseAmount(str) {
+  if (str == null) return 0;
+  const cleaned = String(str).replace(/[,\s_]/g, '').replace(',', '.');
+  const n = parseFloat(cleaned);
+  return Number.isFinite(n) && n >= 0 ? n : 0;
+}
+function formatBaby(n) {
+  if (!Number.isFinite(n) || n <= 0) return '0';
+  // Round to nearest whole token, group with commas
+  return Math.round(n).toLocaleString('en-US');
+}
+function formatUsdt(n) {
+  if (!Number.isFinite(n) || n <= 0) return '0';
+  // Up to 6 decimals, strip trailing zeros
+  const fixed = n.toFixed(6).replace(/\.?0+$/, '');
+  return fixed.length ? fixed : '0';
+}
+
+let syncing = false;
+function syncFromUsdt() {
+  if (syncing || !payAmount || !receiveAmount) return;
+  syncing = true;
+  receiveAmount.value = formatBaby(parseAmount(payAmount.value) * SWAP_RATE);
+  syncing = false;
+}
+function syncFromBaby() {
+  if (syncing || !payAmount || !receiveAmount) return;
+  syncing = true;
+  payAmount.value = formatUsdt(parseAmount(receiveAmount.value) / SWAP_RATE);
+  syncing = false;
+}
+payAmount?.addEventListener('input', syncFromUsdt);
+receiveAmount?.addEventListener('input', syncFromBaby);
+
+if (swapBuyBtn) {
+  const defaultLabel = swapBuyBtn.textContent;
+  swapBuyBtn.addEventListener('click', () => {
+    // TODO: wire to the actual presale contract / wallet flow
+    swapBuyBtn.textContent = 'Coming soon…';
+    swapBuyBtn.disabled = true;
+    setTimeout(() => {
+      swapBuyBtn.textContent = defaultLabel;
+      swapBuyBtn.disabled = false;
+    }, 1800);
+  });
+}
+
 // MOBILE TELEGRAM FAB — first tap expands the social popup, second tap opens Telegram, tap outside closes
 const tgFab = document.getElementById('tgFab');
 const tgSocialPopup = document.getElementById('tgSocialPopup');

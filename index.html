@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=27" />
+  <link rel="stylesheet" href="styles.css?v=29" />
 </head>
 <body>
 
@@ -71,7 +71,56 @@
         <span class="line">TO THE</span> <span class="line moon">MOON.</span>
       </h1>
 
-      <div class="contract">
+      <!-- PRESALE SWAP — replaces the contract card for now -->
+      <div class="swap-card" id="swapCard">
+        <div class="swap-header">
+          <span class="swap-eyebrow"><span class="swap-live-dot"></span>Presale</span>
+          <span class="swap-rate">1 USDT = 1B $BABY</span>
+        </div>
+
+        <div class="swap-field">
+          <div class="swap-label-row">
+            <span class="swap-label">You pay</span>
+            <span class="swap-balance" id="payBalance">Balance: —</span>
+          </div>
+          <div class="swap-input-row">
+            <input type="text" id="payAmount" value="1" inputmode="decimal" autocomplete="off" />
+            <div class="swap-token">
+              <span class="swap-token-logo">
+                <svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><circle cx="16" cy="16" r="16" fill="#26A17B"/><path d="M17.92 17.39v-.01c-.11.01-.66.04-1.86.04-.97 0-1.66-.03-1.9-.04v.01c-3.78-.17-6.6-.83-6.6-1.62 0-.79 2.82-1.45 6.6-1.62v2.58c.25.02.94.06 1.91.06 1.16 0 1.74-.05 1.85-.06v-2.58c3.77.18 6.59.83 6.59 1.62 0 .79-2.82 1.44-6.59 1.62m0-3.51v-2.31h5.28V8.06H8.85v3.51h5.28v2.31c-4.29.2-7.52 1.05-7.52 2.07 0 1.02 3.23 1.87 7.52 2.07v7.4h3.79v-7.4c4.28-.2 7.5-1.05 7.5-2.07s-3.22-1.87-7.5-2.07" fill="#fff"/></svg>
+              </span>
+              <span>USDT</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="swap-divider" aria-hidden="true">
+          <span class="swap-arrow">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="5" x2="12" y2="19"/>
+              <polyline points="19 12 12 19 5 12"/>
+            </svg>
+          </span>
+        </div>
+
+        <div class="swap-field">
+          <div class="swap-label-row">
+            <span class="swap-label">You receive</span>
+          </div>
+          <div class="swap-input-row">
+            <input type="text" id="receiveAmount" value="1,000,000,000" inputmode="decimal" autocomplete="off" />
+            <div class="swap-token">
+              <span class="swap-token-logo"><img src="logo.jpg" alt="" /></span>
+              <span>$BABY</span>
+            </div>
+          </div>
+        </div>
+
+        <button class="swap-buy-btn" id="swapBuyBtn">Buy $BABYSHEEP</button>
+      </div>
+
+      <!-- Contract address card — saved but hidden for now -->
+      <div class="contract is-saved">
         <div class="contract-inner">
           <span class="contract-label">CONTRACT ADDRESS</span>
           <code id="ca">0x88c33f9aeD3D35d77bFFc9cB4EE2b8C08E496735</code>
@@ -105,6 +154,6 @@
     </a>
   </div>
 
-  <script src="script.js?v=21"></script>
+  <script src="script.js?v=22"></script>
 </body>
 </html>
